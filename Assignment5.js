@@ -105,7 +105,9 @@ function init() {
 // STEP 6. Within the enter() function get the result text box by its ID and set its value plus equal to the val parameter being passed in.
 
 
-var enter = function(val) {
+
+var enter = function (val) {
+    "use strict";
     this.val = document.getElementById(this.id);
     var result = document.getElementById("result");
     result.value += this.val.value;
@@ -115,7 +117,8 @@ var enter = function(val) {
 
 // STEP 8. Within the calculate() function get the result text box by its ID and set its value equal to the calculation currently stored in the result text box. HINT: Use the built-in eval() function to perform the heavy lifting for you.
 
-var calculate = function() {
+var calculate = function () {
+    "use strict";
     var finalResult, calculation, evaluation;
     finalResult = document.getElementById("result").value;
     calculation = finalResult.toString();
@@ -125,25 +128,26 @@ var calculate = function() {
 
 // Figure out a way to simplify your code so that you don’t have to manually attach an event handler to each and every button. You should be able to programmatically attach a listener to every button on the page and attach a handler that listens for the click without having to write so much code. HINT: Remember the concept of “event bubbling”. Perhaps it makes more sense to listen for an event on a parent element rather than each and every button….
 
-window.addEventListener("load", init, false);
-
 function init() {
-    var body = document.querySelector("body");
+    "use strict";
+    console.log("init is working");
+    var body, button, grabField, makeString, finalAnswer;
+    body = document.querySelector("body");
     
-    body.addEventListener("click", function() {
-        //Need to target what was clicked and assign it to "something"
-        console.log(something);
-        if ("=" === something.value) {
+    body.addEventListener("click", function () {
+        console.log("body event works");
+        button = event.target.id.toString();
+        if (button === "equal") {
             calculate();
         } else {
-            enter();
+            this.val = document.getElementById(event.target.id);
+            var result = document.getElementById("result");
+            result.value += this.val.value;
         }
-    }, false);
-};
-
+    });
+}
 */
 
-var REVISIT = "see above step";
 /* ---------------------------------------- */
 
 // JAVASCRIPT IMAGE ROLLOVERS - In this part of the assignment you will practice working with the DOM, DOM Events, Functions, and more to create an application that features a navigation bar with rollover images.
